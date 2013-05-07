@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', function() {
+	return View::make('layouts.master');
 });
+
+Route::controller('account', 'AccountController');
+
+Route::get('forum', 'TopicController@index');
+Route::get('topic/{slug}/{id}', 'TopicController@show');
+Route::resource('topic/reply', 'ReplyController');
+
+Route::resource('topic', 'TopicController');
